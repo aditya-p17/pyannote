@@ -1,7 +1,18 @@
 import requests
+from dotenv import load_dotenv
+import os
 
 API_URL = "https://api-inference.huggingface.co/models/arpanghoshal/EmoRoBERTa"
-headers = {"Authorization": f"Bearer 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"}
+#headers = {"Authorization": f"Bearer {API} "}
+
+# Load the .env file
+load_dotenv()
+
+# Get the API key from the environment variables
+API = os.getenv("API")
+headers = {"Authorization": f"Bearer {API}"}
+
+
 
 def query_sentiment(payload):
 	response = requests.post(API_URL, headers=headers, json=payload)
